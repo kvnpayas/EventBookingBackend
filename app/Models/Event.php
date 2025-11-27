@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\CommonQueryScopes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
-  use HasFactory;
+  use CommonQueryScopes, HasFactory;
   protected $fillable = [
     'created_by',
     'title',
