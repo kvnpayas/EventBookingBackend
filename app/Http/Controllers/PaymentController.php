@@ -26,7 +26,7 @@ class PaymentController extends Controller
 
     $amount = $ticket->price * $booking->quantity;
 
-    $status = 'success';
+    $status = app(PaymentService::class)->process($amount);
 
 
     $payment = Payment::create([
@@ -41,6 +41,7 @@ class PaymentController extends Controller
       $ticket->update(['quantity' => $updatedQuantity]);
       $booking->update(['status' => 'confirmed']);
 
+      $booking->user->notify(new BookingConfirmedNotification($booking));
 
       return response()->json([
         'payment' => $payment,

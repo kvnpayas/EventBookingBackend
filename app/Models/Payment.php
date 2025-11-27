@@ -3,17 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Payment extends Model
 {
-  protected $fillable = [
-    'booking_id',
-    'amount',
-    'status',
-  ];
+    use HasFactory;
+    protected $fillable = [
+        'booking_id',
+        'amount',
+        'status',
+    ];
 
-  public function booking()
-  {
-    return $this->belongsTo(Booking::class);
-  }
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class);
+    }
 }

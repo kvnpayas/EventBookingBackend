@@ -36,7 +36,7 @@ Route::put('/ticket/{ticket}', [TicketController::class, 'update'])->middleware(
 Route::delete('/ticket/{ticket}', [TicketController::class, 'destroy'])->middleware(['auth:sanctum', 'role:organizer']);
 
 // Bookings
-Route::post('/tickets/{ticket}/booking', [BookingController::class, 'store'])->middleware(['auth:sanctum', 'role:customer']);
+Route::post('/tickets/{ticket}/booking', [BookingController::class, 'store'])->middleware(['auth:sanctum', 'role:customer', 'double.booking']);
 Route::get('/bookings', [BookingController::class, 'index'])->middleware(['auth:sanctum', 'role:customer']);
 Route::put('/booking/{booking}/cancel', [BookingController::class, 'cancel'])->middleware(['auth:sanctum', 'role:customer']);
 
